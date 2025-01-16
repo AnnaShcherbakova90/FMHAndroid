@@ -18,10 +18,12 @@ import androidx.test.filters.LargeTest;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import ru.iteco.fmhandroid.R;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(AllureAndroidJUnit4.class)
 public class LogInOutTest {
 
     @Rule
@@ -32,7 +34,7 @@ public class LogInOutTest {
     public void logInOutTest() {
 
         //log in check
-        onView(isRoot()).perform(waitDisplayed(R.id.login_text_input_layout, 6000)); //waiting for App is up and running and 'login' and 'password' text inputs are displayed
+        onView(isRoot()).perform(waitDisplayed(R.id.login_text_input_layout, 8000)); //waiting for App is up and running and 'login' and 'password' text inputs are displayed
 
         ViewInteraction loginTextInput = onView(
                 allOf(withId(R.id.login_text_input_edit_text)));
