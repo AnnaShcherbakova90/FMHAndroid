@@ -1,5 +1,6 @@
-package ru.iteco.fmhandroid.ui;
+package ru.iteco.fmhandroid.ui.utils;
 
+import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -7,12 +8,15 @@ import android.view.View;
 import androidx.test.espresso.PerformException;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.util.HumanReadables;
 import androidx.test.espresso.util.TreeIterables;
 import org.hamcrest.Matcher;
 import java.util.concurrent.TimeoutException;
 
-public class TestUtils {
+import ru.iteco.fmhandroid.R;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+public class CommonUtils {
     /**
      * Perform action of waiting for a specific view id to be displayed.
      * @param viewId The id of the view to wait for.
@@ -57,5 +61,9 @@ public class TestUtils {
                         .build();
             }
         };
+    }
+
+    public static void waitDisplayed(final int viewId){
+        onView(isRoot()).perform(waitDisplayed(viewId, 10000));
     }
 }
