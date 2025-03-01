@@ -1,0 +1,53 @@
+{
+    "name": "logInTest",
+    "start": 1740655235239,
+    "stop": 1740655243881,
+    "stage": "finished",
+    "description": null,
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "952faae5-df9f-4839-804a-573de38925cb",
+    "historyId": "1fbf4b9d08f7e4f0daed28c175b27854",
+    "fullName": "ru.iteco.fmhandroid.ui.tests.LogInOutTest.logInTest",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.iteco.fmhandroid.ui.tests"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.iteco.fmhandroid.ui.tests.LogInOutTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "logInTest"
+        },
+        {
+            "name": "suite",
+            "value": "ru.iteco.fmhandroid.ui.tests.LogInOutTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(155)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        }
+    ]
+}

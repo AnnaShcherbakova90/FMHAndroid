@@ -8,21 +8,21 @@ import android.view.View;
 import androidx.test.espresso.PerformException;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
-import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.util.HumanReadables;
 import androidx.test.espresso.util.TreeIterables;
+import androidx.test.platform.app.InstrumentationRegistry;
 import org.hamcrest.Matcher;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeoutException;
+import ru.iteco.fmhandroid.ui.pages.AuthPage;
+import ru.iteco.fmhandroid.ui.pages.TopCustomAppBar;
 
-import ru.iteco.fmhandroid.R;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 public class CommonUtils {
-    /**
-     * Perform action of waiting for a specific view id to be displayed.
-     * @param viewId The id of the view to wait for.
-     * @param millis The timeout of until when to wait for.
-     */
-    public static ViewAction waitDisplayed(final int viewId, final long millis) {
+
+    AuthPage authPage = new AuthPage();
+    TopCustomAppBar topCustomAppBar = new TopCustomAppBar();
+    public ViewAction waitDisplayed(final int viewId, final long millis) {
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {
@@ -62,8 +62,33 @@ public class CommonUtils {
             }
         };
     }
-
-    public static void waitDisplayed(final int viewId){
-        onView(isRoot()).perform(waitDisplayed(viewId, 10000));
+    public void waitDisplayed(final int viewId){
+        onView(isRoot()).perform(waitDisplayed(viewId, 4000));
+    }
+    public LocalDateTime getNowDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String now = LocalDateTime.now().toString();
+        return LocalDateTime.parse(now, formatter);
+    }
+    public LocalDateTime getNowTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String now = LocalDateTime.now().toString();
+        return LocalDateTime.parse(now, formatter);
+    }
+    public void disableAnimations() {
+        InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand(
+                "settings put global window_animation_scale 0");
+        InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand(
+                "settings put global transition_animation_scale 0");
+        InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand(
+                "settings put global animator_duration_scale 0");
+    }
+    public boolean isLoggedIn() {
+        try {
+            waitDisplayed(topCustomAppBar.getAuthImageButton());
+            return true;
+        } catch (Exception ignored) {
+            return false;
+        }
     }
 }

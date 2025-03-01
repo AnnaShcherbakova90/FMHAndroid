@@ -26,6 +26,7 @@
             app:cardElevation="4dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/new_edit_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
@@ -90,7 +91,7 @@
                         android:id="@+id/news_item_publish_date_text_input_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:focusableInTouchMode="false" />
+                        android:focusableInTouchMode="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -111,7 +112,7 @@
                         android:id="@+id/news_item_publish_time_text_input_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:focusableInTouchMode="false" />
+                        android:focusableInTouchMode="true" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

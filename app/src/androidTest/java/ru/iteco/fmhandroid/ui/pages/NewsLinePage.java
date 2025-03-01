@@ -13,24 +13,28 @@ import ru.iteco.fmhandroid.ui.data.Constants;
 
 public class NewsLinePage {
 
-    public static int getAllNewsTextView() {
-        return R.id.all_news_text_view;
-    }
+    public int allNewsTextView = R.id.all_news_text_view;
+    public int newsListContainer = R.id.container_list_news_include;
 
-    public static int getNewsListContainer() {
-        return R.id.container_list_news_include;
+    public int getAllNewsTextView() {
+        return allNewsTextView;
+    }
+    public int getNewsListContainer() {
+        return newsListContainer;
     }
     @Step("Click 'All News' button")
-    public static void clickAllNewsButton(){
-        onView(allOf(withId(getAllNewsTextView()), withText(Constants.allNews),
-            isDisplayed()))
-            .perform(click());
+    public void clickAllNewsButton(){
+        onView(allOf(withId(getAllNewsTextView()),
+                withText(Constants.allNews),
+                isDisplayed()
+        ))
+                .perform(click());
     }
-
     @Step("Check News line is shown")
-    public static void checkAllNewsResult() {
+    public void checkAllNewsResult() {
         onView(allOf(withText(Constants.news),
-            isDisplayed()))
-            .check(matches(withText(Constants.news)));
+            isDisplayed()
+        ))
+                .check(matches(withText(Constants.news)));
     }
 }
