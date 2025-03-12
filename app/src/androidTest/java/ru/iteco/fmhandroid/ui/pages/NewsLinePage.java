@@ -25,16 +25,16 @@ public class NewsLinePage {
     @Step("Click 'All News' button")
     public void clickAllNewsButton(){
         onView(allOf(withId(getAllNewsTextView()),
-                withText(Constants.allNews),
+                withText(Constants.ALL_NEWS),
                 isDisplayed()
         ))
                 .perform(click());
     }
     @Step("Check News line is shown")
     public void checkAllNewsResult() {
-        onView(allOf(withText(Constants.news),
+        onView(allOf(withText(Constants.NEWS),
             isDisplayed()
         ))
-                .check(matches(withText(Constants.news)));
+                .check(matches(withText(Constants.NEWS)));
     }
 }

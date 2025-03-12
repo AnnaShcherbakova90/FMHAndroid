@@ -8,15 +8,12 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
-
-import androidx.test.espresso.ViewInteraction;
 
 import io.qameta.allure.kotlin.Step;
 import ru.iteco.fmhandroid.R;
@@ -120,11 +117,11 @@ public class NewsListRecyclerPage {
                 .check(matches(withText(time)));*/
 
         onView(allOf(withId(getNewsItemPublishedTextView()),
-                withText(Constants.notActive.toUpperCase()),
+                withText(Constants.NOT_ACTIVE.toUpperCase()),
                 isDescendantOfA(allOf(withId(getNewsItemMaterialCardView()), hasDescendant(withText(title)))),
                 isDisplayed()
         ))
-                .check(matches(withText(Constants.notActive.toUpperCase())));
+                .check(matches(withText(Constants.NOT_ACTIVE.toUpperCase())));
     }
     @Step("Click the first available edit button inside a parent containing the title")
     public void clickEditPublicationWithSpecificTitle(String title) {

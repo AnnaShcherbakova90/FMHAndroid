@@ -3,7 +3,6 @@ package ru.iteco.fmhandroid.ui.pages;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -11,8 +10,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.matcher.ViewMatchers;
 import org.hamcrest.Matchers;
 import io.qameta.allure.kotlin.Step;
 import ru.iteco.fmhandroid.R;
@@ -54,20 +51,20 @@ public class TopCustomAppBar {
     @Step("Click 'Log out' menu option")
     public void clickLogOut() {
         onView(Matchers.allOf(withId(getTitle()),
-                withText(Constants.logOut),
+                withText(Constants.LOG_OUT),
                 isDisplayed()
         ))
                 .perform(click());
     }
     @Step("Click About menu item")
     public void clickAboutMenuItem() {
-        onView(allOf(withId(getMainMenuButton()), withContentDescription(Constants.mainMenu),
+        onView(allOf(withId(getMainMenuButton()), withContentDescription(Constants.MAIN_MENU),
                         isDisplayed()
         ))
                 .perform(click());
 
         onView(allOf(withId(getAboutMainMenuItem()),
-                withText(Constants.about),
+                withText(Constants.ABOUT),
                 isDisplayed()
         ))
                 .perform(click());

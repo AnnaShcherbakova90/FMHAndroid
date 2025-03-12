@@ -29,6 +29,7 @@ public class LogInOutTest {
     @Test
     public void logInOutTest() {
         basicScenarios.logOut();
+        basicScenarios.logInError();
         basicScenarios.logIn();
     }
 
