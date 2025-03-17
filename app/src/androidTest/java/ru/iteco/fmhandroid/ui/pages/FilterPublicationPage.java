@@ -21,6 +21,14 @@ public class FilterPublicationPage extends PublicationPage {
     public int newItemPublishDateEndInputEditTextLayout = R.id.news_item_publish_date_end_text_input_layout;
     public int newItemPublishDateEndInputEditText = R.id.news_item_publish_date_end_text_input_edit_text;
     public int filterInactiveMaterialCheckBox = R.id.filter_news_inactive_material_check_box;
+    public int iconAdvertisement = R.raw.icon_advertisement;
+    public int iconSalary = R.raw.icon_salary;
+    public int iconUnion = R.raw.icon_union;
+    public int iconBirthday = R.raw.icon_birthday;
+    public int iconHoliday = R.raw.icon_holiday;
+    public int iconMassage = R.raw.icon_massage;
+    public int iconGratitude = R.raw.icon_gratitude;
+    public int iconHelp = R.raw.icon_help;
 
     public int getFilerButton() {
         return filerButton;
@@ -39,6 +47,30 @@ public class FilterPublicationPage extends PublicationPage {
     }
     public int getFilterInactiveMaterialCheckBox() {
         return filterInactiveMaterialCheckBox;
+    }
+    public int getIconAdvertisement() {
+        return iconAdvertisement;
+    }
+    public int getIconSalary() {
+        return iconSalary;
+    }
+    public int getIconUnion() {
+        return iconUnion;
+    }
+    public int getIconBirthday() {
+        return iconBirthday;
+    }
+    public int getIconHoliday() {
+        return iconHoliday;
+    }
+    public int getIconMassage() {
+        return iconMassage;
+    }
+    public int getIconGratitude() {
+        return iconGratitude;
+    }
+    public int getIconHelp() {
+        return iconHelp;
     }
 
     @Step("Enable Active checkbox")

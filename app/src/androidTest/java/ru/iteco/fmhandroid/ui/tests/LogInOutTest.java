@@ -22,15 +22,29 @@ public class LogInOutTest {
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void logIn() {
-        basicScenarios.logIn();
+    public void checkAndLogOut() {
+        basicScenarios.logOut();
     }
 
     @Test
-    public void logInOutTest() {
-        basicScenarios.logOut();
-        basicScenarios.logInError();
+    public void checkLogInPageShownTest() {
+        basicScenarios.checkLogInPageShown();
+    }
+    @Test
+    public void logInWithIncorrectLoginTest() {
+        basicScenarios.logInWithIncorrectLogin();
+    }
+    @Test
+    public void logInWithIncorrectPasswordTest() {
+        basicScenarios.logInWithIncorrectPassword();
+    }
+    @Test
+    public void logInTest() {
         basicScenarios.logIn();
+    }
+    @Test
+    public void logOutTest() {
+        basicScenarios.logOut();
     }
 
     @After

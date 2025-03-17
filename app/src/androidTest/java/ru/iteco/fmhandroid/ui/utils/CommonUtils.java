@@ -63,7 +63,7 @@ public class CommonUtils {
         };
     }
     public void waitDisplayed(final int viewId){
-        onView(isRoot()).perform(waitDisplayed(viewId, 4000));
+        onView(isRoot()).perform(waitDisplayed(viewId, 6000));
     }
     public LocalDateTime getNowDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

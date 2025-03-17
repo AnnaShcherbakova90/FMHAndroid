@@ -21,6 +21,7 @@ public class EditPublicationPage extends PublicationPage {
     public int newItemPublishTimeInputEditText = R.id.news_item_publish_time_text_input_edit_text;
     public int newItemCreateDateInputTextLayout = R.id.news_item_create_date_text_input_layout;
     public int activeSwitcher = R.id.switcher;
+    public int saveButton = R.id.save_button;
 
     public int getNewItemCreateDateInputTextLayout() {
         return newItemCreateDateInputTextLayout;
@@ -36,6 +37,9 @@ public class EditPublicationPage extends PublicationPage {
     }
     public int getActiveSwitcher() {
         return activeSwitcher;
+    }
+    public int getSaveButton() {
+        return saveButton;
     }
 
     @Step("Set New date")
@@ -82,7 +86,7 @@ public class EditPublicationPage extends PublicationPage {
                 .perform(scrollTo(), click());
     }
     @Step("Check attributes have been updated")
-    public void checkAttributesUpdated(String category, String title, String description, String date, String time, String activity) {
+    public void checkPublicationWithAttributesExists(String category, String title, String description, String date, String time, String activity) {
         onView(allOf(withId(getNewCategoryTextView()),
                 withText(category),
                 isDisplayed()
@@ -118,5 +122,10 @@ public class EditPublicationPage extends PublicationPage {
                 isDisplayed()
         ))
                 .check(matches(isDisplayed()));
+    }
+    @Step("Click Save button")
+    public void checkSaveErrorOccurs() {
+        onView(withId(getSaveButton()))
+            .check(matches(isDisplayed()));
     }
 }

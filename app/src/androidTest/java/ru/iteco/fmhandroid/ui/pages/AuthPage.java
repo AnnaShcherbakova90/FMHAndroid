@@ -20,6 +20,7 @@ public class AuthPage {
     public int loginTextInput = R.id.login_text_input_edit_text;
     public int passwordTextInput = R.id.password_text_edit_text;
     public int signInButton = R.id.enter_button;
+    public int allNewsTextView = R.id.all_news_text_view;
 
     public int getLoginTextInput() {
         return loginTextInput;
@@ -30,7 +31,21 @@ public class AuthPage {
     public int getSignInButton() {
         return signInButton;
     }
+    public int getAllNewsTextView() {
+        return allNewsTextView;
+    }
 
+    @Step("Check LogIn page is fully shown")
+    public void checkLogInPageShown() {
+        onView(withId(getLoginTextInput()))
+                .check(matches(isDisplayed()));
+
+        onView(withId(getPasswordTextInput()))
+                .check(matches(isDisplayed()));
+
+        onView(withId(getSignInButton()))
+                .check(matches(isDisplayed()));
+    }
     @Step("Set login")
     public void setLogin() {
         onView(withId(getLoginTextInput()))
@@ -58,7 +73,7 @@ public class AuthPage {
     }
     @Step("Check error popup appears")
     public void checkErrorAppears() {
-            onView(withId(R.id.all_news_text_view))
+            onView(withId(getAllNewsTextView()))
                     .check(doesNotExist());
     }
 }

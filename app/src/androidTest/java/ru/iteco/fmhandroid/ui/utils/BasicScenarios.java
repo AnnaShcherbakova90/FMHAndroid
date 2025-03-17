@@ -21,18 +21,24 @@ public class BasicScenarios extends CommonUtils {
 
     public void logIn() {
         if(!isLoggedIn()) {
+            waitDisplayed(authPage.getLoginTextInput());
             authPage.setLogin();
             authPage.setPassword();
             authPage.clickSignInButton();
+            waitDisplayed(newsLinePage.getAllNewsTextView());
         }
     }
-    public void logInError() {
-        if(!isLoggedIn()) {
-            authPage.setWrongLogin();
-            authPage.setWrongPassword();
-            authPage.clickSignInButton();
-            authPage.checkErrorAppears();
-        }
+    public void logInWithIncorrectLogin() {
+        authPage.setWrongLogin();
+        authPage.setPassword();
+        authPage.clickSignInButton();
+        authPage.checkErrorAppears();
+    }
+    public void logInWithIncorrectPassword() {
+        authPage.setLogin();
+        authPage.setWrongPassword();
+        authPage.clickSignInButton();
+        authPage.checkErrorAppears();
     }
     public void logOut() {
         if(isLoggedIn()) {
@@ -48,17 +54,83 @@ public class BasicScenarios extends CommonUtils {
         newsControlPanel.clickAddNewButton();
         waitDisplayed(editPublicationPage.getNewCategoryTextView());
         editPublicationPage.setNewCategory(Constants.PUBLICATION);
-        editPublicationPage.setNewTitle(Constants.getTITLE());
+        editPublicationPage.setNewTitle(Constants.getTitle());
         editPublicationPage.setNewDate();
         editPublicationPage.setNewTime();
-        editPublicationPage.setNewDescription(Constants.getDESCRIPTION());
+        editPublicationPage.setNewDescription(Constants.getDescription());
         editPublicationPage.clickSaveButton();
         waitDisplayed(newsListRecyclerPage.getNewItemTitleTextView());
-        newsListRecyclerPage.checkNewItemTitleExists(Constants.getTITLE());
+        newsListRecyclerPage.checkNewItemTitleExists(Constants.getTitle());
+    }
+
+    public void createPublicationWithoutCategoryScenario() {
+        waitDisplayed(newsLinePage.getAllNewsTextView());
+        newsLinePage.clickAllNewsButton();
+        newsControlPanel.clickEditNewButton();
+        newsControlPanel.clickAddNewButton();
+        waitDisplayed(editPublicationPage.getNewCategoryTextView());
+        editPublicationPage.setNewTitle(Constants.getTitle());
+        editPublicationPage.setNewDate();
+        editPublicationPage.setNewTime();
+        editPublicationPage.setNewDescription(Constants.getDescription());
+        editPublicationPage.clickSaveButton();
+        editPublicationPage.checkSaveErrorOccurs();
+    }
+    public void createPublicationWithoutTitleScenario() {
+        waitDisplayed(newsLinePage.getAllNewsTextView());
+        newsLinePage.clickAllNewsButton();
+        newsControlPanel.clickEditNewButton();
+        newsControlPanel.clickAddNewButton();
+        waitDisplayed(editPublicationPage.getNewCategoryTextView());
+        editPublicationPage.setNewCategory(Constants.PUBLICATION);
+        editPublicationPage.setNewDate();
+        editPublicationPage.setNewTime();
+        editPublicationPage.setNewDescription(Constants.getDescription());
+        editPublicationPage.clickSaveButton();
+        editPublicationPage.checkSaveErrorOccurs();
+    }
+    public void createPublicationWithoutDateScenario() {
+        waitDisplayed(newsLinePage.getAllNewsTextView());
+        newsLinePage.clickAllNewsButton();
+        newsControlPanel.clickEditNewButton();
+        newsControlPanel.clickAddNewButton();
+        waitDisplayed(editPublicationPage.getNewCategoryTextView());
+        editPublicationPage.setNewCategory(Constants.PUBLICATION);
+        editPublicationPage.setNewTitle(Constants.getTitle());
+        editPublicationPage.setNewTime();
+        editPublicationPage.setNewDescription(Constants.getDescription());
+        editPublicationPage.clickSaveButton();
+        editPublicationPage.checkSaveErrorOccurs();
+    }
+    public void createPublicationWithoutTimeScenario() {
+        waitDisplayed(newsLinePage.getAllNewsTextView());
+        newsLinePage.clickAllNewsButton();
+        newsControlPanel.clickEditNewButton();
+        newsControlPanel.clickAddNewButton();
+        waitDisplayed(editPublicationPage.getNewCategoryTextView());
+        editPublicationPage.setNewCategory(Constants.PUBLICATION);
+        editPublicationPage.setNewTitle(Constants.getTitle());
+        editPublicationPage.setNewDate();
+        editPublicationPage.setNewDescription(Constants.getDescription());
+        editPublicationPage.clickSaveButton();
+        editPublicationPage.checkSaveErrorOccurs();
+    }
+    public void createPublicationWithoutDescriptionScenario() {
+        waitDisplayed(newsLinePage.getAllNewsTextView());
+        newsLinePage.clickAllNewsButton();
+        newsControlPanel.clickEditNewButton();
+        newsControlPanel.clickAddNewButton();
+        waitDisplayed(editPublicationPage.getNewCategoryTextView());
+        editPublicationPage.setNewCategory(Constants.PUBLICATION);
+        editPublicationPage.setNewTitle(Constants.getTitle());
+        editPublicationPage.setNewDate();
+        editPublicationPage.setNewTime();
+        editPublicationPage.clickSaveButton();
+        editPublicationPage.checkSaveErrorOccurs();
     }
     public void editPublicationScenario() {
         waitDisplayed(newsListRecyclerPage.getNewItemTitleTextView());
-        newsListRecyclerPage.clickEditPublicationWithSpecificTitle(Constants.getTITLE());
+        newsListRecyclerPage.clickEditPublicationWithSpecificTitle(Constants.getTitle());
         waitDisplayed(editPublicationPage.getNewCategoryTextView());
         editPublicationPage.setNewTitle(Constants.getNewTitle());
         editPublicationPage.setNewDescription(Constants.getNewDescription());
@@ -70,7 +142,7 @@ public class BasicScenarios extends CommonUtils {
         waitDisplayed(newsListRecyclerPage.getNewItemTitleTextView());
         newsListRecyclerPage.clickEditPublicationWithSpecificTitle(Constants.getNewTitle());
         waitDisplayed(editPublicationPage.getNewCategoryTextView());
-        editPublicationPage.checkAttributesUpdated(Constants.SALARY, Constants.getNewTitle(), Constants.getNewDescription(), Constants.DATE, Constants.TITLE, Constants.NOT_ACTIVE);
+        editPublicationPage.checkPublicationWithAttributesExists(Constants.SALARY, Constants.getNewTitle(), Constants.getNewDescription(), Constants.DATE, Constants.TIME, Constants.NOT_ACTIVE);
         editPublicationPage.clickSaveButton();
     }
     public void filterPublicationScenario() {
@@ -83,13 +155,13 @@ public class BasicScenarios extends CommonUtils {
         filterPublicationPage.disableNotActiveCheckbox();
         filterPublicationPage.clickFilterButton();
         waitDisplayed(newsListRecyclerPage.getNewItemTitleTextView());
-        newsListRecyclerPage.checkNewItemTitleExists(Constants.getTITLE());
+        newsListRecyclerPage.checkNewItemTitleExists(Constants.getTitle());
 
     }
     public void sortPublicationScenario() {
         waitDisplayed(newsListRecyclerPage.getNewItemTitleTextView());
         newsControlPanel.clickSortNewsButton();
-        newsListRecyclerPage.checkNewItemTitleExists(Constants.getTITLE());
+        newsListRecyclerPage.checkNewItemTitleExists(Constants.getTitle());
     }
     public void checkAboutInfoExistsScenario() {
         waitDisplayed(newsLinePage.getAllNewsTextView());
@@ -107,13 +179,26 @@ public class BasicScenarios extends CommonUtils {
     }
     public void deletePublicationScenario() {
         waitDisplayed(newsListRecyclerPage.getNewItemTitleTextView());
-        newsListRecyclerPage.clickDeletePublicationWithSpecificTitle(Constants.getTITLE());
-        newsListRecyclerPage.checkNewItemTitleDoesNotExist(Constants.getTITLE());
+        newsListRecyclerPage.clickDeletePublicationWithSpecificTitle(Constants.getTitle());
+        newsListRecyclerPage.checkNewItemTitleDoesNotExist(Constants.getTitle());
     }
 
     public void newsLineScenario() {
         waitDisplayed(newsLinePage.getAllNewsTextView());
         newsLinePage.clickAllNewsButton();
         newsLinePage.checkAllNewsResult();
+    }
+
+    public void cancelEditPublicationScenario() {
+        waitDisplayed(newsListRecyclerPage.getNewItemTitleTextView());
+        newsListRecyclerPage.clickEditPublicationWithSpecificTitle(Constants.getTitle());
+        editPublicationPage.clickCancelButton();
+        waitDisplayed(newsListRecyclerPage.getNewItemTitleTextView());
+        waitDisplayed(newsListRecyclerPage.getNewItemTitleTextView());
+        newsListRecyclerPage.checkNewItemTitleExists(Constants.getTitle());
+    }
+
+    public void checkLogInPageShown() {
+        authPage.checkLogInPageShown();
     }
 }

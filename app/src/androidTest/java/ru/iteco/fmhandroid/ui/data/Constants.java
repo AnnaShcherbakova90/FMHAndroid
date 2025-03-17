@@ -24,13 +24,13 @@ public class Constants {
     public static String MAIN_MENU = "Main menu";
     public static String ABOUT = "About";
 
-    public static String getTITLE() {
+    public static String getTitle() {
         return TITLE;
     }
     public static String getNewTitle() {
         return NEW_TITLE;
     }
-    public static String getDESCRIPTION() {
+    public static String getDescription() {
         return DESCRIPTION;
     }
     public static String getNewDescription() {

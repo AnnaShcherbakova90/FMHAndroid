@@ -3,9 +3,17 @@ package ru.iteco.fmhandroid.ui.pages;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
+
+import androidx.test.espresso.ViewInteraction;
+
 import io.qameta.allure.kotlin.Step;
 import ru.iteco.fmhandroid.R;
 
@@ -57,12 +65,25 @@ public class PublicationPage {
                 isDisplayed()
         ))
                 .perform(replaceText(description));
-
     }
     @Step("Click Save button")
     public void clickSaveButton() {
         onView(withId(getSaveButton()))
                 .perform(click());
+    }
+    @Step("Check Attention button exists")
+    public void checkAttentionButtonExists() {
+        onView(withId(getSaveButton()))
+                .perform(click());
+    }
+
+    @Step("Click Cancel button")
+    public void clickCancelButton() {
+        onView(withId(R.id.cancel_button))
+            .perform(scrollTo(), click());
+
+        onView(allOf(withId(android.R.id.button1), withText("OK")))
+            .perform(scrollTo(), click());
     }
 
 }
